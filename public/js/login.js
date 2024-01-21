@@ -5,7 +5,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     const password = document.getElementById('password').value;
 
     // Отправка запроса на сервер для проверки учетных данных
-    fetch('/api/login', {
+    fetch(`http://localhost:3000/api/auth/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -16,7 +16,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     .then(data => {
         if (data.success) {
             // Перенаправление на административную панель
-            window.location.href = '/admin';
+            window.location.href = 'http://localhost:3000/admin';
         } else {
             alert('Неверное имя пользователя или пароль');
         }

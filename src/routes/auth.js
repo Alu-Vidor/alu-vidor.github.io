@@ -1,22 +1,15 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+const router = express.Router();
 const bcrypt = require('bcrypt');
-const app = express();
-const port = 3000;
 
-// Предполагается, что подключение к базе данных уже настроено
-const db = require('./db'); // Пример подключения к базе данных
+const db = require('../db/index.js'); // Пример подключения к базе данных
 
-app.use(bodyParser.json());
-app.use(express.static('public')); // Папка для статических файлов
-
-// Маршрут для аутентификации
-app.post('/api/login', async (req, res) => {
+router.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
     try {
         // Получение пользователя из базы данных
-        const user = await db.query('SELECT * FROM Admins WHERE Username = ?', [username]);
+        const user = await db.query(`SELECT * FROM Admins WHERE Username = '${username}'`);
 
         if (user.length > 0) {
             // Проверка пароля
@@ -36,6 +29,4 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
-app.listen(port, () => {
-    console.log(`Сервер запущен на http://localhost:${port}`);
-});
+module.exports = router;
