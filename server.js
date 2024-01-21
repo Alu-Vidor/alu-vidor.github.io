@@ -11,6 +11,11 @@ app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/admin.html'));
 });
 
+// Маршрут для страницы управления рецептами
+app.get('/recipes', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/manage-recipes.html'));
+});
+
 app.listen(port, () => {
     console.log(`Сервер запущен на http://localhost:${port}`);
 });

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Управление Рецептами</title>
+    <link rel="stylesheet" href="css/manage-recipes.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Управление Рецептами</h1>
+
+        <!-- Форма для добавления нового рецепта -->
+        <div id="recipe-form-container">
+            <form id="recipe-form">
+                <input type="text" id="dish-name" placeholder="Название блюда" required>
+                <textarea id="description" placeholder="Описание" required></textarea>
+                <div id="ingredients-container">
+                    <h3>Ингредиенты</h3>
+                    <!-- Динамически добавляемые поля для ингредиентов -->
+                </div>
+                <button type="button" id="add-ingredient">Добавить ингредиент</button>
+                <button type="submit">Сохранить Рецепт</button>
+            </form>
+        </div>
+
+        <!-- Таблица для отображения существующих рецептов -->
+        <div id="recipes-table-container">
+            <table id="recipes-table">
+                <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Описание</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Динамически добавляемые строки таблицы -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Модальное окно для добавления нового ингредиента -->
+    <div id="add-ingredient-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close-btn">&times;</span>
+            <h2>Добавить новый ингредиент</h2>
+            <input type="text" id="new-ingredient-name" placeholder="Название продукта">
+            <button id="add-new-ingredient">Добавить</button>
+        </div>
+    </div>
+
+    <script src="js/manage-recipes.js"></script>
+</body>
+</html>
