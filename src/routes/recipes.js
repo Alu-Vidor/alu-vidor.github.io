@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db/index.js'); // Предполагается, что db - это модуль для работы с БД
+const db = require('../db/index.js');
 
 // Получение всех рецептов
 router.get('/', async (req, res) => {

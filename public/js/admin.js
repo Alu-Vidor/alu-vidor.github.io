@@ -5,3 +5,7 @@ document.getElementById('manage-recipes').addEventListener('click', function() {
 document.getElementById('manage-menu').addEventListener('click', function() {
     window.location.href = '/menu';
 });
+
+document.getElementById('view-stock').addEventListener('click', function() {
+    window.location.href = '/stock';
+});

@@ -16,6 +16,16 @@ app.get('/recipes', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/manage-recipes.html'));
 });
 
+// Маршрут для страницы управления меню
+app.get('/menu', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/manage-menu.html'));
+});
+
+// Маршрут для страницы склада
+app.get('/stock', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/stock.html'));
+});
+
 app.listen(port, () => {
     console.log(`Сервер запущен на http://localhost:${port}`);
 });
