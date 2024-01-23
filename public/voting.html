@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Голосование за меню</title>
+    <link rel="stylesheet" href="css/voting.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Голосование за меню столовой</h1>
+        <div id="voting-timer-container">
+            <p>До конца голосования осталось: <span id="timer">00:00:00</span></p>
+        </div>
+        <div id="menus">
+            <!-- Три контейнера для меню -->
+            <div class="menu" id="menu1">
+                <h2>Меню 1</h2>
+                <!-- Содержимое меню 1 -->
+                <button class="vote-button">Голосовать</button>
+            </div>
+            <div class="menu" id="menu2">
+                <h2>Меню 2</h2>
+                <!-- Содержимое меню 2 -->
+                <button class="vote-button">Голосовать</button>
+            </div>
+            <div class="menu" id="menu3">
+                <h2>Меню 3</h2>
+                <!-- Содержимое меню 3 -->
+                <button class="vote-button">Голосовать</button>
+            </div>
+        </div>
+        <div id="voting-result" style="display:none;">
+            <!-- Результаты голосования -->
+        </div>
+    </div>
+    <script src="js/voting.js"></script>
+</body>
+</html>

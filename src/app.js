@@ -4,6 +4,7 @@ const productsRoutes = require('./routes/products');
 const recipesRoutes = require('./routes/recipes');
 const menuRoutes = require('./routes/menu');
 const stockRoutes = require('./routes/stock');
+const votingStatusRoutes = require('./routes/voting-status');
 const cors = require('cors');
 
 const app = express();
@@ -21,5 +22,6 @@ app.use('/api/recipes', recipesRoutes);
 app.use('/api/products', productsRoutes);
 app.use('/api/menu', menuRoutes);
 app.use('/api/stock', stockRoutes);
+app.use('/api/voting-status', votingStatusRoutes);
 
 module.exports = app;

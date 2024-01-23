@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     loadAvailableRecipes();
+    checkVotingStatus();
 });
 
 document.getElementById('launch-voting').addEventListener('click', function() {
@@ -50,29 +51,75 @@ function addRecipeSelectors(menuContainer, recipes) {
 
 function toggleVoting(startVoting) {
     const action = startVoting ? 'start-voting' : 'stop-voting';
-    fetch(`http://localhost:3000/api/menu/${action}`, {
-        method: 'POST'
-    })
-    .then(response => {
-        if (response.ok) {
-            console.log(startVoting ? 'Голосование запущено' : 'Голосование остановлено');
-            updateVotingButtons(startVoting);
-        } else {
-            console.error('Ошибка при попытке изменить состояние голосования');
-        }
-    })
-    .catch(error => console.error('Ошибка:', error));
+    const method = 'POST';
+
+    const requestOptions = {
+        method: method,
+    };
+
+    if (startVoting) {
+        const menuData = getMenuData();
+
+        console.log(menuData);
+
+        requestOptions.headers = {
+            'Content-Type': 'application/json',
+        };
+        requestOptions.body = JSON.stringify(menuData);
+    }
+
+    fetch(`http://localhost:3000/api/menu/${action}`, requestOptions)
+        .then(response => {
+            if (response.ok) {
+                console.log(startVoting ? 'Голосование запущено' : 'Голосование остановлено');
+                updateVotingButtons(startVoting ? 'active' : 'inactive');
+            } else {
+                console.error('Ошибка при попытке изменить состояние голосования');
+            }
+        })
+        .catch(error => console.error('Ошибка:', error));
 }
 
-function updateVotingButtons(votingStarted) {
+function getMenuData() {
+    const menus = ['menu1', 'menu2', 'menu3'];
+    const menuData = menus.map(menuId => {
+        const menuContainer = document.getElementById(menuId);
+        const selectedOptions = menuContainer.querySelectorAll('select');
+        const courses = Array.from(selectedOptions).map(select => select.value);
+        return {
+            menuId: menuId,
+            firstCourseId: courses[0],
+            secondCourseId: courses[1],
+            dessertId: courses[2],
+            drinkId: courses[3],
+        };
+    });
+
+    return { menus: menuData };
+}
+
+function updateVotingButtons(status) {
     const launchButton = document.getElementById('launch-voting');
     const stopButton = document.getElementById('stop-voting');
 
-    if (votingStarted) {
+    console.log(status);
+
+    if (status == "active") {
         launchButton.style.display = 'none';
         stopButton.style.display = 'block';
     } else {
         launchButton.style.display = 'block';
         stopButton.style.display = 'none';
     }
+}
+
+function checkVotingStatus() {
+    fetch('http://localhost:3000/api/voting-status')
+        .then(response => response.json())
+        .then(data => {
+            updateVotingButtons(data.status);
+        })
+        .catch(error => {
+            console.error('Ошибка при проверке статуса голосования:', error);
+        });
 }
