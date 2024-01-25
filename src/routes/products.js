@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db/index.js'); // Предполагаем, что у вас есть модуль db для взаимодействия с базой данных
+const db = require('../db/index.js');
 
 // Получение списка всех продуктов
 router.get('/', async (req, res) => {

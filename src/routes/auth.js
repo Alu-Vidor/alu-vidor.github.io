@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 
-const db = require('../db/index.js'); // Пример подключения к базе данных
+const db = require('../db/index.js'); 
 
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
