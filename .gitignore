@@ -2,3 +2,4 @@
 /node_modules copy
 /test.js
 /src/db
+.env
